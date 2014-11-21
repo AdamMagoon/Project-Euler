@@ -1,0 +1,14 @@
+big_number = 999
+smallest = 100
+
+for x in range(big_number):
+    big_number -= x
+    for i in range(big_number, smallest, -1):
+        number = big_number * i
+        number = str(number)
+        reversed_number = number[::-1]
+        if number == reversed_number:
+            print(number, big_number, i)
+            break
+        elif i == 100:
+            big_number -= 1
