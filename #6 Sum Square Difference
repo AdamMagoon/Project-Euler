@@ -1,0 +1,27 @@
+'''
+Created on Nov 21, 2014
+
+@author: amagoon
+'''
+
+total = 0
+square_of_sum = 0
+
+#    Here I create a list of numbers from 1 to 100
+myNumbers = range(1,101)
+
+#    Iterate through the numbers
+for i in myNumbers:
+    #    Add 'i' to a variable to be squared later
+    square_of_sum += i
+    #    find 'i' squared
+    square = i * i
+    #    Add i^2 to total
+    total += square
+#    Calculate the sum of first 100 squares
+squared_total = square_of_sum * square_of_sum
+
+#    Print out results
+print('Sum of first 100 squares: ',total)
+print('Square of the sum: ', squared_total)
+print('Difference: ',squared_total - total)
