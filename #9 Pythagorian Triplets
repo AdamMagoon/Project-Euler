@@ -1,0 +1,32 @@
+'''
+Created on Nov 30, 2014
+
+@author: amagoon
+'''
+
+#    Function to find all of the possible triplets where a + b + c = 1000
+def find_trips():
+    myLst = []
+    for a in range(1,1001):
+        for b in range(a + 1, a + 1001):
+            if a + b > 1000:
+                break
+            c = 1000 - (a + b)
+            myLst.append([a, b, c])
+    #    Return a list of all possible trips
+    return myLst
+
+#    function to take the list created and check to see if they are real pythagorian triplets.
+def is_actual(list):
+    #     Defining a list to hold our number groupings
+    newLst = []
+    for i in list:
+        a = i[0]
+        b = i[1]
+        c = i[2]
+        if a ** 2 + b ** 2 == c ** 2:
+            newLst.append(i)
+    #    Return the product of the real triplets (a*b*c)
+    return newLst[0][0] * newLst[0][1] * newLst[0][2]
+            
+print(is_actual(find_trips()))
