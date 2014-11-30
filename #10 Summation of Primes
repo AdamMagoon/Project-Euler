@@ -1,0 +1,37 @@
+'''
+Created on Nov 30, 2014
+
+@author: amagoon
+'''
+
+def isprime(n):
+    '''check if integer n is a prime'''
+    # make sure n is a positive integer
+    n = abs(int(n))
+    # 0 and 1 are not primes
+    if n < 2:
+        return False
+    # 2 is the only even prime number
+    if n == 2: 
+        return True
+    # all other even numbers are not primes
+    if not n & 1: 
+        return False
+    # range starts with 3 and only needs to go up the squareroot of n
+    # for all odd numbers
+    for x in range(3, int(n**0.5)+1, 2):
+        if n % x == 0:
+            return False
+    return True
+
+
+def sumOfPrimes(highest_number):
+    #    I started with 10 to ignore 2, 3 and 5 (2+3+5=10)
+    total = 10
+    #    Iterate from 6 to 2 million and add to total if n is prime
+    for n in range(6, highest_number):
+        if isprime(n) == True:
+            total += n
+    return total
+
+print(sumOfPrimes(2000000))
