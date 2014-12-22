@@ -1,0 +1,22 @@
+'''
+Created on Dec 22, 2014
+
+@author: amagoon
+'''
+n = 4000000
+
+def fibonacci(n):
+    f_list = [1,2]
+    while f_list[-1] < n:
+        new_n = f_list[-2] + f_list[-1]
+        f_list.append(new_n)
+    return f_list
+
+def sumOfEven(l):
+    f_sum = 0
+    for n in l:
+        if n % 2 == 0:
+            f_sum += n
+    return f_sum
+
+print(sumOfEven(fibonacci(n)))
