@@ -1,0 +1,16 @@
+'''
+Created on Dec 22, 2014
+
+@author: amagoon
+'''
+
+n = 2 ** 1000
+n = list(str(n))
+
+def find_sum(nList):
+    total = 0
+    for i in n:
+        total += int(i)
+    return total
+
+print(find_sum(n))
