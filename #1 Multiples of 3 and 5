@@ -1,0 +1,21 @@
+'''
+Created on Dec 22, 2014
+
+@author: amagoon
+'''
+
+def findMultiples(number):
+    n_list = []
+    for n in range(3,number):
+        if n % 3 == 0 or n % 5 == 0:
+            n_list.append(n)
+    print(n_list)
+    return n_list
+
+def sum(n_list):
+    total = 0
+    for n in n_list:
+        total += n
+    return total
+
+print(sum(findMultiples(1000)))
