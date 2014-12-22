@@ -9,24 +9,23 @@ start = time.clock()
 
 def show_sequence(startingNumber):
     n = startingNumber
-    my_list = [n]
+    my_number = 1
     while n > 1:
         if n % 2 == 0:
             n = n / 2
-            my_list.append(int(n))
+            my_number += 1
         else:
             n = (n * 3) + 1
-            my_list.append(int(n))
-    return my_list
+            my_number += 1
+    return my_number
 
 def find_longest_sequence(maxNumber):
     longest_list = 0
     starting_number = 0
     for i in range(1,maxNumber,2):
-        print(i)
         n = show_sequence(i)
-        if len(n) > longest_list:
-            longest_list = len(n)
+        if n > longest_list:
+            longest_list = n
             starting_number = i
     return starting_number
 
@@ -37,5 +36,7 @@ total = end-start
 if total > 60:
     minutes = int(total / 60)
     seconds = total % 60
-print(minutes, "minutes and", seconds, "seconds")
+    print(minutes, "minutes and", seconds, "seconds")
+else:
+    print(total, "seconds")
     
