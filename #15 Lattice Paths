@@ -1,0 +1,20 @@
+'''
+Created on Dec 22, 2014
+
+@author: amagoon
+'''
+import time
+begin = time.clock()
+gridSize = 20
+
+def gridPath(gridSize):
+    my_list = [1] * gridSize
+    for i in range(gridSize):
+        for j in range(i):
+            my_list[j] = my_list[j] + my_list[j - 1]
+        my_list[i] = 2 * my_list[i - 1]
+    return my_list[gridSize - 1]
+
+results = gridPath(gridSize)
+total = time.clock() - begin
+print(results,"\r",total)
