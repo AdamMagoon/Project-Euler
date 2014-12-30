@@ -1,0 +1,65 @@
+'''
+Created on Dec 22, 2014
+
+@author: amagoon
+'''
+
+triangle = [[75],[95,64],[17,47,82],[18,35,87,10],[20,4,82,47,65],[19,1,23,75,3,34],[88,2,77,73,7,63,67],[99,65,4,28,6,16,70,92],[41,41,26,56,83,40,80,70,33],[41,48,72,33,47,32,37,16,94,29],[53,71,44,65,25,43,91,52,97,51,14],[70,11,33,28,77,73,17,78,39,68,17,57],[91,71,52,38,17,14,91,43,58,50,27,29,48],[63,66,4,68,89,53,67,30,73,16,69,87,40,31],[4,62,98,27,23,9,70,98,73,93,38,53,60,4,23]]
+
+def binary_create(row_number):
+    my_list = []
+    for x in range(2 ** row_number):
+        temp = bin(x)[2::]
+        if len(temp) == row_number - 1:
+            my_list.append(temp)
+    for x in range(len(my_list)):
+        temp = list(my_list[x])
+        temp[0] = '0'
+        temp = ''.join(temp)
+        my_list.append(temp)
+    return my_list
+
+#    Uses the slice taken from evaluate() to create a path
+def use_slice(my_slice, triangle):
+    index_number = 0
+    #    slice_total list starts with first number in pyramid.
+    first_number = int(triangle[0][0])
+    slice_total = [first_number]
+    for y in range(len(triangle) - 1):
+        #    Easy access to our row
+        #    Easy access to our binary number
+        row = triangle[y + 1]
+        bin_int = int(my_slice[y])
+        if bin_int == 0:
+            slice_total.append(row[index_number])
+        #    Else, add index_number + 1 to slice_total and add 1 to index_number
+        else:
+            if index_number == len(triangle) - 1:
+                slice_total.append(row[index_number])
+            else:
+                slice_total.append(row[index_number + 1])
+                index_number = index_number + 1
+            
+    return slice_total
+
+
+def evaluate(bin_list, triangle):
+    #    'total' is eventually returned with the largest number at end.
+    total = 0
+    #    Slices of our binary reference numbers into the numbers we need
+    for sli in range(len(bin_list)):
+        #    Easy access to the slice we need, converted into a list for manipulation
+        my_slice = list(bin_list[sli])
+        
+        #    Iterating over the rows of the pyramid using use_slice() function.
+        slice_total = use_slice(my_slice, triangle)
+        sub_total = sum(slice_total)
+        if sub_total > total:
+            total = sub_total
+
+    return total
+
+start = time.clock()
+bin_list = binary_create(15)
+print(bin_list, len(bin_list))
+print(evaluate(bin_list, triangle))
