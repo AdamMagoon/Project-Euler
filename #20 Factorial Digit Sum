@@ -1,0 +1,27 @@
+'''
+Created on Dec 30, 2014
+
+@author: amagoon
+'''
+
+number = 100
+
+def n_factorial(number):
+    n = number
+    total = n
+    for x in range(n - 1, 0, -1):
+        total *= x
+        print(x)
+    return total
+
+def digit_count(number):
+    print(number)
+    n = str(number)
+    total = 0
+    for digit in n:
+        d = int(digit)
+        total += d
+        print(d)
+    return total
+
+print(digit_count(n_factorial(number)))
