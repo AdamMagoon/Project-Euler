@@ -1,0 +1,75 @@
+'''
+Created on Dec 30, 2014
+
+@author: amagoon
+'''
+import time
+
+leap = 4
+start = 'Monday'
+year = 1900
+
+m_days = [[1, 'January', 31],[2, 'February', 28],[3, 'March', 31], [4, 'April', 30], [5, 'May', 31], [6, 'June', 30], [7, 'July', 31], [8, 'August', 31],[9, 'September', 30], [10, 'October', 31], [11, 'November', 30], [12, 'December', 31]]
+
+days = {
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wednesday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday',
+        7: 'Sunday'
+    }                
+
+def create_list(starting_year, ending_year):
+    year = starting_year
+    year_end = ending_year
+    
+    day_of_week = 1
+    my_list = []
+    month = 1
+    
+    while year < year_end:
+        if month == 13:
+            year += 1
+            month = 1
+        if year % 4 == 0:
+            if year % 100 == 0:
+                if year % 400 == 0:
+                    leap_year = True
+                else:
+                    leap_year = False
+            else:
+                leap_year = True
+        else:
+            leap_year = False
+            
+        if month == 2 and leap_year == True:
+            month_length = 29
+        else:
+            month_length = m_days[month - 1][2]
+            
+            
+        for day in range(month_length):
+            my_list_object = [days[day_of_week], day + 1, m_days[month - 1][1], year]
+            my_list.append(my_list_object)
+            if day_of_week == 7:
+                day_of_week = 1
+            else:
+                day_of_week += 1
+        month += 1
+    
+    return my_list  
+
+def count_mondays(my_list):
+    count = 0
+    for x in range(len(my_list)):
+        if my_list[x][0] == 'Sunday' and my_list[x][1] == 1:
+            count += 1
+    return count
+
+start = time.clock()
+
+print(count_mondays(create_list(1901, 2000)))
+
+print("Total time = ", time.clock() - start)
