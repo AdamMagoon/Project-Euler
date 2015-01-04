@@ -1,14 +1,20 @@
-big_number = 999
-smallest = 100
+'''
+Created on Jan 4, 2015
 
-for x in range(big_number):
-    big_number -= x
-    for i in range(big_number, smallest, -1):
-        number = big_number * i
-        number = str(number)
-        reversed_number = number[::-1]
-        if number == reversed_number:
-            print(number, big_number, i)
-            break
-        elif i == 100:
-            big_number -= 1
+@author: amagoon
+'''
+
+max_n = 999
+
+def find_Palindrome(max_n):
+    highest_total = 0
+    for i in range(max_n, 1, -1):
+        for x in range(max_n, 1, -1):
+            temp_total = i * x
+            product_string = str(temp_total)
+            if product_string == product_string[::-1]:
+                if highest_total < temp_total:
+                    highest_total = temp_total
+    return highest_total
+            
+print(find_Palindrome(max_n))
