@@ -1,21 +1,17 @@
 '''
-Created on Dec 22, 2014
+Created on Jan 3, 2015
 
 @author: amagoon
 '''
 
-def findMultiples(number):
-    n_list = []
-    for n in range(3,number):
-        if n % 3 == 0 or n % 5 == 0:
-            n_list.append(n)
-    print(n_list)
-    return n_list
+max_n = 1000
 
-def sum(n_list):
+def sum_3_5(max_n):
     total = 0
-    for n in n_list:
-        total += n
+    for i in range(3,max_n):
+        if i % 3 == 0 or i % 5 == 0:
+            total += i
+            
     return total
 
-print(sum(findMultiples(1000)))
+print(sum_3_5(max_n))
