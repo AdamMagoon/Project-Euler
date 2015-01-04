@@ -1,20 +1,21 @@
 '''
-Created on Nov 21, 2014
+Created on Jan 4, 2015
 
 @author: amagoon
 '''
-myList = [11,17,19,13,16,12,14,15,18,20]
 
-i = 2520
-found = False
-while found == False:
-    for x in myList:
-        if x == 20:
-            print('The smallest multiple is', i)
-            found = True
-            break
-        elif i % x == 0:
-            continue
-        else:
-            i += 20
-            break
+my_list = [11, 13, 17, 19, 18, 16, 15, 14, 12, 20]
+
+def find_smallest_multiple(my_list):
+    n = 20
+    run = True
+    while run == True:
+        n += 20
+        for x in my_list:
+            if n % x != 0:
+                break
+            if x == my_list[-1]:
+                run = False
+    return n
+        
+print(find_smallest_multiple(my_list))
