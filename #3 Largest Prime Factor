@@ -1,0 +1,32 @@
+'''
+Created on Jan 3, 2015
+
+@author: amagoon
+'''
+
+from math import sqrt
+
+max_n = 600851475143
+
+
+def is_prime(n):
+    #    First check if n is even
+    #    Return False if n is even
+    if n % 2 == 0:
+        return False
+    #    Starting from 3
+    #    Check if n is divisible by i
+    for i in range(3,int(sqrt(n)),2):
+        if n % i == 0:
+            return False
+    #    Return True if all else fails
+    return True
+
+def find_hPrime(max_n):
+    #    Start high, work down. Break as soon as it finds one.
+    for i in range(int(sqrt(max_n)), 1, -1):
+        if is_prime(i) and max_n % i == 0:
+            return i
+            break
+        
+print(find_hPrime(max_n))
