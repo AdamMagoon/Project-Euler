@@ -1,0 +1,82 @@
+'''
+Created on Jan 2, 2015
+
+@author: amagoon
+'''
+#    My target file/URL
+targetUrl = "C:\Anaconda\p022_names.txt"
+my_list = []
+
+def write_to_list():
+    #    Open file, read and check each character if it is a letter
+    #    If so, add to a temp list
+    #    When the name is done (char != alpha) join and add name to my_list
+    with open(targetUrl) as f:
+        for line in f:
+            temp_list = []
+            for char in line:
+                if char.isalpha():
+                    temp_list.append(char)
+                else:
+                    if len(temp_list) > 0:
+                        name = ''.join(temp_list)
+                        my_list.append(name)
+                    temp_list = []
+
+
+write_to_list()
+#    Sort list alphabetically
+my_list.sort()
+
+Letter_Dictionary = {
+                     'A':1,
+                     'B':2,
+                     'C':3,
+                     'D':4,
+                     'E':5,
+                     'F':6,
+                     'G':7,
+                     'H':8,
+                     'I':9,
+                     'J':10,
+                     'K':11,
+                     'L':12,
+                     'M':13,
+                     'N':14,
+                     'O':15,
+                     'P':16,
+                     'Q':17,
+                     'R':18,
+                     'S':19,
+                     'T':20,
+                     'U':21,
+                     'V':22,
+                     'W':23,
+                     'X':24,
+                     'Y':25,
+                     'Z':26
+}
+
+def get_value_all():
+    name_dict = {}
+    total = 0
+    for name in my_list:
+        name_total = 0
+        for letter in name:
+            name_total += Letter_Dictionary[letter]
+        name_dict[name] = name_total
+        total += name_total
+    return total, name_dict
+
+total, name_dict = get_value_all()
+
+def grand_total():
+    total = 0
+    for x in range(1,len(my_list)+1):
+        total += x * name_dict[my_list[x-1]]
+    return total
+    
+            
+
+print(my_list)
+print(grand_total())
