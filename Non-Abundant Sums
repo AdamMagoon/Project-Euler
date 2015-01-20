@@ -1,0 +1,62 @@
+'''
+Created on Jan 8, 2015
+
+@author: amagoon
+'''
+import time
+start = time.clock()
+import functools
+from math import sqrt
+max_n = 28123
+
+#    Returns a set of divisors (does not include n)
+def find_divisors(n):
+    temp_set = sorted(list(set(functools.reduce(list.__add__, 
+                                    ([i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0)))))
+    temp_set.pop(-1)
+    return temp_set
+
+#    Adds all of the divisors to see if it's abundant
+def is_abundant(n):
+    d_lst = find_divisors(n)
+    if sum(d_lst) > n:
+        return True
+    else:
+        return False
+    
+#    Creates a set of just abundant numbers
+def find_abundant_numbers(max_n):
+    numbers = set()
+    for n in range(2,max_n+1):
+        if is_abundant(n):
+            numbers.add(n)
+    return numbers
+
+#    Finds all possible sums of two abundant numbers
+#    Returns them in a set
+def sum_of_two_a_list(abundt):
+    my_set = set()
+    for n in abundt:
+        for i in abundt:
+            ni = n+i
+            if ni <= max_n:
+                my_set.add(ni)
+    return my_set
+
+#    Adds any number NOT in sum_list
+def remove_abun(sum_list):
+    total = 0
+    for n in range(max_n):
+        if n not in sum_list:
+            total += n
+    return total
+
+
+#    Find all abundant numbers up to max_n
+abundt = find_abundant_numbers(max_n)
+sum_list = sum_of_two_a_list(abundt)
+
+# print('Abundant Numbers: ',abundt)
+print('Sum of 2 Abundant Numbers: ',sum_list)
+print('Total = ',remove_abun(sum_list))
+print(time.clock() - start)
